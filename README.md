@@ -1,1 +1,7 @@
-"# CPSC471-Full-Stack-APP" 
+TO RUN: 
+
+cd into client
+
+npm install
+
+npm start
