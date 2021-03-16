@@ -1,15 +1,20 @@
 import React from 'react';
+
 import './App.css';
+import Signup from './auth/Signup'
 import Login from './auth/Login'
+import {BrowserRouter as Router, Switch, Route} from 'react-router-dom'
 
 function App() {
   return (
-    <div className="App">
-      <h1 style = {{color: "white"}}>Welcome to our Financial Planner!</h1>
-      
-      <Login />
+    
+        <Router>
+          <Switch>
+            <Route path = "/signup" component= {Signup}/>
+            <Route path = "/Login" component= {Login}/>
+          </Switch>
+        </Router>
 
-    </div>
   );
 }
 
