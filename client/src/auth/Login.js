@@ -1,25 +1,41 @@
 import React from 'react'
+import {Form, Button, Card} from 'react-bootstrap'
+import {Link} from 'react-router-dom'
+import { Container } from 'react-bootstrap';
+import Welcome from './Welcometext'
 
-function login() {
+export default function Login() {
     return (
-        <form>
-            <div className = "form-inner">
-                <h2 style = {{color: "white"}}> Login</h2>
+        <Container className = "d-flex align-items-center justify-content-center"
+                style = {{minHeight: "100vh"}}>
 
-                <div className = "form-group">
-                    <label htmlFor="username">username: </label>
-                    <input type="text" name= "username" id="username"/>
+            <Welcome/>
+            <div className = "w-100" style = {{maxWidth: "400px"}}>
+                <Card>
+                    <Card.Body>
+                        <h2 className = "text-center mb-4">Login</h2>
+                        <Form>
+                            <Form.Group id = "username">
+                                <Form.Label>Create Username</Form.Label>
+                                <Form.Control type = "text" required></Form.Control>
+                            </Form.Group>
+                            
+                            <Form.Group id = "password">
+                                <Form.Label>Password</Form.Label>
+                                <Form.Control type = "password" required></Form.Control>
+                            </Form.Group>
+                            
+                            <Button className = "w-100">Login </Button>
+                        </Form>
+                    </Card.Body>
+                </Card>
+                <div className = "w-100 text-center mt-2">
+                    New Around Here?
+                    <Link to= "/signup"> Sign up</Link>
                 </div>
 
-                <div className = "form-group">
-                    <label htmlFor="password">password: </label>
-                    <input type="password" name= "password" id="password"/>
-                </div>
-
-                <input type = "submit" value = "submit"/>
             </div>
-        </form>
+         </Container>   
+               
     )
 }
-
-export default login
