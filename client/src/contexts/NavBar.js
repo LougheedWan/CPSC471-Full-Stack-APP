@@ -21,15 +21,17 @@ export default function NavBar() {
             <Navbar.Brand> Planner</Navbar.Brand>
             <Nav className = "mr-auto">
                 <Nav.Link href = "main"> Home </Nav.Link>
-                <Nav.Link>History</Nav.Link>
+                <Nav.Link href = "history">History</Nav.Link>
                 <Nav.Link href= "goals">Goals</Nav.Link>
+                <Nav.Link href = "achievements">Achievements</Nav.Link>
             </Nav>
 
             <Form inline>
+                <Nav.Link href = "settings" style = {{color:"white"}}>Settings</Nav.Link>
 
                 <Button variant = "outline-info" onClick = {() => {
                     logoutUser();
-                }}>Logout</Button>
+                }}>Logout</Button> 
             </Form>
         </Navbar>
     )
