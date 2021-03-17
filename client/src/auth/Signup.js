@@ -12,7 +12,7 @@ function Signup() {
     const [Email, setEmail] = useState('')
 
     const createUser = () => {
-        Axios.post("http://localhost:3001/api/insert",{
+        Axios.post("http://localhost:3001/api/createuser",{
              userName: UserName,
              password: Password,
              email: Email,
