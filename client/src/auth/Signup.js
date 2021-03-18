@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import {Form, Button, Card, Alert} from 'react-bootstrap'
-import {Link} from 'react-router-dom'
+import {Link, useHistory} from 'react-router-dom'
 import Welcome from './Welcometext'
 import Axios from 'axios'
 import { Container } from 'react-bootstrap';
@@ -9,7 +9,15 @@ function Signup() {
 
     const [UserName, setUserName] = useState('')
     const [Password, setPassword] = useState('')
+    const [ConfPassword, setConfPassword] = useState('')
     const [Email, setEmail] = useState('')
+
+    const history = useHistory();
+
+    const routechangetologin = () => {
+        let path = '/login'
+        history.push(path);
+    }
 
     const createUser = () => {
         Axios.post("http://localhost:3001/api/createuser",{
@@ -18,6 +26,7 @@ function Signup() {
              email: Email,
         }).then(()=>{
             alert('created user');
+            routechangetologin()
         }).catch(e => {
             console.log(e);
         });
@@ -57,9 +66,19 @@ function Signup() {
                             </Form.Group>
                             <Form.Group id = "passwordconf">
                                 <Form.Label>Confirm Password</Form.Label>
-                                <Form.Control type = "password" required></Form.Control>
+                                <Form.Control type = "password" required onChange={(e)=> {
+                                    setConfPassword(e.target.value)}}></Form.Control>
                             </Form.Group>
-                            <Button className = "w-100" onClick = {createUser}>Sign up </Button>
+                            <Button className = "w-100" onClick = {() =>{
+                                if (Password === ConfPassword){
+                                    createUser()
+
+                                }
+                                else{
+                                    alert("Passwords Do not Match");
+                                }
+                                
+                            }}>Sign up </Button>
                         </Form>
                     </Card.Body>
                 </Card>

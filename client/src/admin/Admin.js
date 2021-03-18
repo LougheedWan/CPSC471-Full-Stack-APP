@@ -5,7 +5,7 @@ import CurrentUser from '../contexts/CurrentUser'
 import MainNavBar from '../contexts/NavBar'
 import AdminNavBar from '../contexts/NavBarAdmin'
 
-export default function Goals() {
+export default function Admin() {
    
     const getAdmin = () => {
         const id = localStorage.getItem('adminstate');
@@ -25,9 +25,10 @@ export default function Goals() {
             
         <div>
             {renderadmin()}
-           
+            <h1>OOOOO SPOOKKKY SO YOURE AN ADMINNNNNNNN</h1>
         </div>
         
         
     )
 }
+
