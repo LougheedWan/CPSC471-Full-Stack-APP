@@ -27,7 +27,7 @@ app.post("/api/createuser", (req, res)=>{
     const email = req.body.email
 
     //query
-    const createUser = 'call create_user(?,?,?)'
+    const createUser = 'call create_user(?,?,?,0)'
     db.query(createUser, [userName, password, email], (err, result)=>{
         console.log(result);
         res.end();

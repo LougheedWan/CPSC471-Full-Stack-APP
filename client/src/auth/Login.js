@@ -35,10 +35,14 @@ export default function Login() {
             }
             else if (DatabasePassword[0][0].password === Password){
                 CurrentUser.currentuser = DatabasePassword[0];
+                //set localstorage data
+                localStorage.setItem('currentusername', DatabasePassword[0][0].username);
+                localStorage.setItem('currentpassword', DatabasePassword[0][0].password);
+                localStorage.setItem('adminstate', DatabasePassword[0][0].Admin);
                 console.log(CurrentUser.currentuser);
                 authsuc = true;
                 routechangetomain();
-                alert('success');
+            
             }
             else {
                 alert("wrong password");
