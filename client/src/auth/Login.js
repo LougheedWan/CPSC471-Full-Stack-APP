@@ -39,6 +39,7 @@ export default function Login() {
                 localStorage.setItem('currentusername', DatabasePassword[0][0].username);
                 localStorage.setItem('currentpassword', DatabasePassword[0][0].password);
                 localStorage.setItem('adminstate', DatabasePassword[0][0].Admin);
+                localStorage.setItem('currentID', DatabasePassword[0][0].ID);
                 console.log(CurrentUser.currentuser);
                 authsuc = true;
                 routechangetomain();
