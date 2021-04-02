@@ -121,6 +121,20 @@ app.post("/api/addtohistory", (req,res)=>{
         res.end();
     })
 });
+
+app.post("/api/gethistorymonth", (req,res)=>{
+    const userid = req.body.userid
+    const monthno = req.body.monthno
+
+    console.log(monthno);
+    const gethistory = "call get_history_month(?,?)"
+
+    db.query(gethistory,[userid,monthno],(err,result)=>{
+        console.log(result);
+        res.send(result);
+        res.end();
+    })
+});
 app.listen(3001, ()=> {
     console.log("running on port 3001");
 })
