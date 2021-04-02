@@ -9,6 +9,7 @@ import History from './history/History'
 import Achievements from './achievements/Achievements'
 import Settings from './settings/Settings'
 import Admin from './admin/Admin'
+import Log from './Log/Log'
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom'
 
 function App() {
@@ -24,6 +25,7 @@ function App() {
             <Route path = "/Achievements" component = {Achievements}/>
             <Route path = "/Settings" component = {Settings}/>
             <Route path = "/admin" component = {Admin}/>
+            <Route path = "/Log" component = {Log}/>
           </Switch>
         </Router>
 

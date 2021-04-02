@@ -19,6 +19,7 @@ app.use(bodyParser.urlencoded({extended: true}))
 
 app.get('/', (req, res) => {
     res.send("Hello World!");
+    res.end();
 });
 
 app.post("/api/createuser", (req, res)=>{
@@ -80,7 +81,46 @@ app.post("/api/delGoals", (req,res)=>{
         console.log(result);
         res.end();
     })
-})
+});
+
+app.post("/api/gethistory", (req,res)=>{
+    const date = req.body.date
+    const userid = req.body.userid
+    console.log(date);
+    const gethistory = "call get_history(?,?)"
+
+    db.query(gethistory,[date, userid],(err,result)=>{
+        console.log(result);
+        res.send(result);
+        res.end();
+    })
+});
+
+app.post("/api/gethistorymain", (req,res)=>{
+    const userid = req.body.userid
+    const gethistory = "call get_history_main(?)"
+
+    db.query(gethistory,[userid],(err,result)=>{
+        console.log(result);
+        res.send(result);
+        res.end();
+    })
+});
+
+app.post("/api/addtohistory", (req,res)=>{
+    const userid = req.body.userid
+    const date = req.body.date
+    const aspent = req.body.aspent
+    const asaved = req.body.asaved
+
+    const addhistory = "call add_history(?,?,?,?)"
+
+    db.query(addhistory,[userid, date, aspent, asaved],(err,result)=>{
+        console.log(result);
+        res.send(result);
+        res.end();
+    })
+});
 app.listen(3001, ()=> {
     console.log("running on port 3001");
 })
