@@ -65,7 +65,7 @@ export default function Goals() {
              
              {renderadmin()}
 
-             <h1 style={{paddingLeft: "15px", paddingTop: "20px", fontSize: 75}}>Goals</h1>
+             <h1 class = 'display-1'style={{paddingLeft: "30px", paddingTop: "20px",}}>Goals</h1>
              
             <Container fluid>
                 <Col>
