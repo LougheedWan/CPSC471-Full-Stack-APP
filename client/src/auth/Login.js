@@ -5,6 +5,7 @@ import { Container } from 'react-bootstrap';
 import Welcome from './Welcometext'
 import Axios from 'axios';
 import CurrentUser from '../contexts/CurrentUser';
+import moment from 'moment';
 
 
 export default function Login() {
@@ -40,6 +41,9 @@ export default function Login() {
                 localStorage.setItem('currentpassword', DatabasePassword[0][0].password);
                 localStorage.setItem('adminstate', DatabasePassword[0][0].Admin);
                 localStorage.setItem('currentID', DatabasePassword[0][0].ID);
+
+                var today = moment(new Date()).format('YYYY-MM-DD');
+                localStorage.setItem('todaydate', today);
                 console.log(CurrentUser.currentuser);
                 authsuc = true;
                 routechangetomain();

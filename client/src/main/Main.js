@@ -6,7 +6,7 @@ import MainNavBar from '../contexts/NavBar'
 import AdminNavBar from '../contexts/NavBarAdmin'
 import Goals from './Goalscard'
 import NoGoals from './NoGoalsCard'
-import Log from './Log'
+import Log from '../Log/LogMain'
 
 export default function Main() {
    
