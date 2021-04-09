@@ -135,6 +135,18 @@ app.post("/api/gethistorymonth", (req,res)=>{
         res.end();
     })
 });
+
+app.post("/api/deletelog", (req,res)=>{
+    const userid = req.body.userid
+    const date = req.body.date
+
+    const deletelog = "call del_log(?,?)"
+
+    db.query(deletelog, [userid, date], (err, result)=>{
+        console.log(err);
+        res.end();
+    })
+})
 app.listen(3001, ()=> {
     console.log("running on port 3001");
 })
