@@ -13,15 +13,35 @@ export default function History() {
     
     const [isLoading, setLoading] = useState(true);
     const [todayhistory, sethistory] = useState([]);
+    const [avgmonth, setavgmonth] = useState([]);
     useEffect(()=>{
-        Axios.post('http://localhost:3001/api/gethistory',{
+
+        var d = new Date();
+
+        var month = ('0'+(d.getMonth()+1)).slice(-2);
+
+        Axios.all([
+
+            Axios.post('http://localhost:3001/api/gethistory',{
             date: localStorage.getItem('todaydate'),
             userid: localStorage.getItem('currentID'),
-        }).then((response)=>{
-            sethistory(response.data);
-            console.log(todayhistory);
+
+            }),
+            Axios.post('http://localhost:3001/api/gethistorymonth', {
+                userid: localStorage.getItem('currentID'),
+                monthno: month,
+            }),
+
+        ]).then(Axios.spread((response1, response2)=>{
+            sethistory(response1.data);
+            setavgmonth(response2.data);
+            
             setLoading(false);
-        });
+        
+        }));
+
+       
+        
 
     }, []);
    
@@ -56,12 +76,11 @@ export default function History() {
         return <div>Loading</div>;
     } 
     return (
-            
         <div>
             {renderadmin()}
-            <h1 class="display-1" style={{paddingLeft: '35px'}}>History</h1>
+            <h1 class="display-1" style={{paddingLeft: '35px', paddingBottom:'30px'}}>History</h1>
             {renderalert()}
-            
+            <h3 style={{paddingLeft:"25px"}}>Avg Monthly Amount Spent: {avgmonth[0][0]["SUM(DailySpend)"]} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Avg Monthly Amount Saved: {avgmonth[0][0]["SUM(DailySave)"]}</h3>
             <List/>
         </div>
         
