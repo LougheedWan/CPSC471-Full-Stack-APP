@@ -146,7 +146,45 @@ app.post("/api/deletelog", (req,res)=>{
         console.log(err);
         res.end();
     })
+}),
+
+app.post("/api/gettotal", (req,res)=>{
+    const userid = req.body.userid
+
+    const total = "call get_total(?)"
+
+    db.query(total, [userid], (err, result)=>{
+        console.log(result);
+        res.send(result);
+        res.end();
+    })
+}),
+
+app.post("/api/countmonth", (req,res)=>{
+    const userid = req.body.userid
+    const monthno = req.body.monthno
+
+    const monthcount = "call count_month(?,?)"
+
+    db.query(monthcount, [userid,monthno], (err, result)=>{
+        console.log(result);
+        res.send(result);
+        res.end();
+    })
+}),
+
+app.post("/api/counttotal", (req,res)=>{
+    const userid = req.body.userid
+
+    const totalcount = "call count_total(?)"
+
+    db.query(totalcount, [userid], (err, result)=>{
+        console.log(result);
+        res.send(result);
+        res.end();
+    })
 })
+
 app.listen(3001, ()=> {
     console.log("running on port 3001");
 })
