@@ -80,7 +80,7 @@ export default function History() {
             {renderadmin()}
             <h1 class="display-1" style={{paddingLeft: '35px', paddingBottom:'30px'}}>History</h1>
             {renderalert()}
-            <h3 style={{paddingLeft:"25px"}}>Avg Monthly Amount Spent: {avgmonth[0][0]["SUM(DailySpend)"]} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Avg Monthly Amount Saved: {avgmonth[0][0]["SUM(DailySave)"]}</h3>
+            <h3 style={{paddingLeft:"25px"}}>Total Current Monthly Amount Spent: {avgmonth[0][0]["SUM(DailySpend)"]} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Total Current Monthly Amount Saved: {avgmonth[0][0]["SUM(DailySave)"]}</h3>
             <List/>
         </div>
         
