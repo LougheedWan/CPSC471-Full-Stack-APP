@@ -1,19 +1,14 @@
 import React, {useState, useEffect} from 'react'
-import { Nav, Navbar, Form, Button, Container, Row, Col, Card} from 'react-bootstrap'
+import { Nav, Navbar, Form, Button} from 'react-bootstrap'
 import {Link, Redirect, useHistory} from 'react-router-dom'
 import CurrentUser from '../contexts/CurrentUser'
 import MainNavBar from '../contexts/NavBar'
 import AdminNavBar from '../contexts/NavBarAdmin'
-import Goals from './Goalscard'
-
-import NoLog from './NoLog'
-import Logged from './Logged'
-import Log from '../Log/LogMain'
-import AchivementList from './AchivementList'
+import Logalert from './logalert'
+import LogMain from './LogMain'
 import Axios from 'axios'
 
-
-export default function Main() {
+export default function Log() {
 
     const [isLoading, setLoading] = useState(true);
     const [todayhistory, sethistory] = useState([]);
@@ -29,7 +24,9 @@ export default function Main() {
         });
 
     }, []);
+   
 
+   
     const getAdmin = () => {
         const id = localStorage.getItem('adminstate');
         console.log(id); 
@@ -49,51 +46,28 @@ export default function Main() {
         console.log(todayhistory);
         if (todayhistory[0].length !=0){
             return (
-                <Logged/>
+                <Logalert/>
             )
            
         }
         else{
             console.log("this should run");
             return (
-                <NoLog/>
+                <LogMain/>
             )
             
         }
 
     }
-
-    const getun = () => {
-        const un = localStorage.getItem('currentusername');
-        return un;
-    }
-    
     if(isLoading){
         return <div>Loading</div>;
-    }
-
+    } 
     return (
             
         <div>
             {renderadmin()}
-            
-            <h1 style = {{textAlign: 'center', paddingTop: '15px', paddingBottom: '50px',fontWeight: 'bold'}} >Welcome Back {getun()}! </h1>
-            
-            <Container fluid >
-                <Row >
-                    <Col> 
-                      <Goals/>
-                    </Col>
-                    <Col>
-                        {renderalert()}
-                    </Col>
-                    <Col>
-                        <AchivementList/>
-                    </Col>
-                </Row>
 
-
-            </Container>
+            {renderalert()}
            
         </div>
         

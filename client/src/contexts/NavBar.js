@@ -24,6 +24,8 @@ export default function NavBar() {
                 <Nav.Link href = "history">History</Nav.Link>
                 <Nav.Link href= "goals">Goals</Nav.Link>
                 <Nav.Link href = "achievements">Achievements</Nav.Link>
+                <Nav.Link href = "log">Log Spending</Nav.Link>
+                <Nav.Link href = "stats">Statistics</Nav.Link>
             </Nav>
 
             <Form inline>
