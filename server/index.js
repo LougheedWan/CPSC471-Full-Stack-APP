@@ -183,6 +183,28 @@ app.post("/api/counttotal", (req,res)=>{
         res.send(result);
         res.end();
     })
+}),
+
+app.post("/api/deleteuser", (req,res)=>{
+    const userid = req.body.userid
+
+    const deleteuser = "call delete_user(?)"
+
+    db.query(deleteuser, [userid], (err, result)=>{
+        console.log(err);
+        res.end();
+    })
+}),
+
+app.get("/api/getallusers", (req,res)=>{
+
+    const getallusers = "call get_allusers()"
+
+    db.query(getallusers, (err, result)=>{
+        console.log(err);
+        res.send(result);
+        res.end();
+    })
 })
 
 app.listen(3001, ()=> {

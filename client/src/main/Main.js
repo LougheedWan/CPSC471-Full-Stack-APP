@@ -5,34 +5,41 @@ import CurrentUser from '../contexts/CurrentUser'
 import MainNavBar from '../contexts/NavBar'
 import AdminNavBar from '../contexts/NavBarAdmin'
 import Goals from './Goalscard'
-
+import NoGoals from './NoGoal'
 import NoLog from './NoLog'
 import Logged from './Logged'
 import Log from '../Log/LogMain'
 import AchivementList from './AchivementList'
 import Axios from 'axios'
 
-
 export default function Main() {
 
     const [isLoading, setLoading] = useState(true);
     const [todayhistory, sethistory] = useState([]);
+    const [uid, setUid] = useState([]);
+
 
     useEffect(()=>{
-        Axios.post('http://localhost:3001/api/gethistory',{
-            date: localStorage.getItem('todaydate'),
-            userid: localStorage.getItem('currentID'),
-        }).then((response)=>{
-            sethistory(response.data);
-            console.log(todayhistory);
-            setLoading(false);
-        });
 
+        Axios.all([
+            Axios.post('http://localhost:3001/api/gethistory',{
+                date: localStorage.getItem('todaydate'),
+                userid: localStorage.getItem('currentID'),
+            }),
+            Axios.post('http://localhost:3001/api/getgoals',{
+                id: localStorage.getItem('currentID'),
+            }),
+        ]).then(Axios.spread((response1, response2)=>{
+            sethistory(response1.data);
+            setUid(response2.data);
+            setLoading(false);
+
+        }));
     }, []);
 
     const getAdmin = () => {
         const id = localStorage.getItem('adminstate');
-        console.log(id); 
+        console.log("adminID" + id); 
         return id;
     }
 
@@ -47,7 +54,7 @@ export default function Main() {
 
     const renderalert = () => {
         console.log(todayhistory);
-        if (todayhistory[0].length !=0){
+        if (todayhistory[0].length != 0){
             return (
                 <Logged/>
             )
@@ -59,6 +66,20 @@ export default function Main() {
                 <NoLog/>
             )
             
+        }
+    }
+
+    const rendergoals = () => {
+        console.log(uid);
+        if (uid[0].length !=0){
+            return(
+                <Goals/>
+            ) 
+        }
+        else{
+            return(
+                <NoGoals/>
+            ) 
         }
 
     }
@@ -82,7 +103,7 @@ export default function Main() {
             <Container fluid >
                 <Row >
                     <Col> 
-                      <Goals/>
+                        {rendergoals()}
                     </Col>
                     <Col>
                         {renderalert()}
