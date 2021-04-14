@@ -1,9 +1,10 @@
-import React from 'react'
-import { Nav, Navbar, Form, Button} from 'react-bootstrap'
+import React, {useState, useEffect} from 'react'
+import { Nav, Navbar, Form, Button, Container, Row, Col, Card} from 'react-bootstrap'
 import {Link, Redirect, useHistory} from 'react-router-dom'
 import CurrentUser from '../contexts/CurrentUser'
 import MainNavBar from '../contexts/NavBar'
 import AdminNavBar from '../contexts/NavBarAdmin'
+import Userlist from './UserList'
 
 export default function Admin() {
    
@@ -25,7 +26,15 @@ export default function Admin() {
             
         <div>
             {renderadmin()}
-            <h1>OOOOO SPOOKKKY SO YOURE AN ADMINNNNNNNN</h1>
+
+            <Container fluid >
+                <Row >
+                    <Col>
+                        <Userlist/>
+                    </Col>
+                </Row>
+            </Container>
+
         </div>
         
         
