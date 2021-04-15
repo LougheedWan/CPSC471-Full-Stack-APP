@@ -26,6 +26,7 @@ export default function Admin() {
             
         <div>
             {renderadmin()}
+            <h1 class="display-1" style={{paddingLeft: '35px', paddingBottom:'30px'}}>Admin Tools</h1>
 
             <Container fluid >
                 <Row >

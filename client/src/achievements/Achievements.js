@@ -51,8 +51,8 @@ export default function Achievements() {
         <div>
             {renderadmin()}
 
-            <h1 class = 'display-1'style={{paddingLeft: "10px", paddingTop: "10px",}}>Acievements</h1>
-            <h1 class="text-l font-bold pb-6">  Wow! Great work on your Achievements so far! Here they are:</h1>
+            <h1 class = 'display-1'style={{paddingLeft: "10px", paddingTop: "10px",}}>Achievements</h1>
+            <h1 class="text-l font-bold pb-6"> Wow! Great work on your Achievements so far! Here they are:</h1>
             <Container fluid>
             <Col>
                 <AchievementsCard/>

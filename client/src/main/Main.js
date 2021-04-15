@@ -9,18 +9,20 @@ import NoGoals from './NoGoal'
 import NoLog from './NoLog'
 import Logged from './Logged'
 import Log from '../Log/LogMain'
-import AchivementList from './AchivementList'
+import AchievementList from './AchievementList'
 import Axios from 'axios'
+import NoAchievement from '../achievements/NoAchievement'
+
 
 export default function Main() {
 
     const [isLoading, setLoading] = useState(true);
     const [todayhistory, sethistory] = useState([]);
     const [uid, setUid] = useState([]);
+    const [userhistory, getuserhistory] = useState([]);
 
 
     useEffect(()=>{
-
         Axios.all([
             Axios.post('http://localhost:3001/api/gethistory',{
                 date: localStorage.getItem('todaydate'),
@@ -29,11 +31,14 @@ export default function Main() {
             Axios.post('http://localhost:3001/api/getgoals',{
                 id: localStorage.getItem('currentID'),
             }),
-        ]).then(Axios.spread((response1, response2)=>{
+            Axios.post('http://localhost:3001/api/gethistorymain',{
+                userid: localStorage.getItem('currentID'),
+            })
+        ]).then(Axios.spread((response1, response2, response3)=>{
             sethistory(response1.data);
             setUid(response2.data);
+            getuserhistory(response3.data);
             setLoading(false);
-
         }));
     }, []);
 
@@ -58,14 +63,12 @@ export default function Main() {
             return (
                 <Logged/>
             )
-           
         }
         else{
             console.log("this should run");
             return (
                 <NoLog/>
             )
-            
         }
     }
 
@@ -81,7 +84,19 @@ export default function Main() {
                 <NoGoals/>
             ) 
         }
+    }
 
+    const renderachievements = () => {
+        if (userhistory[0].length ==0){
+            return(
+                <NoAchievement/>
+            ) 
+        }
+        else{
+            return(
+                <AchievementList/>
+            ) 
+        }
     }
 
     const getun = () => {
@@ -98,8 +113,10 @@ export default function Main() {
         <div>
             {renderadmin()}
             
-            <h1 style = {{textAlign: 'center', paddingTop: '15px', paddingBottom: '50px',fontWeight: 'bold'}} >Welcome Back {getun()}! </h1>
-            
+            <div class="banner">
+                <img src="mainbanner.png" alt="main page banner" width="100%"/>
+                <div class="header">Welcome Back {getun()}!</div>
+            </div>
             <Container fluid >
                 <Row >
                     <Col> 
@@ -109,7 +126,7 @@ export default function Main() {
                         {renderalert()}
                     </Col>
                     <Col>
-                        <AchivementList/>
+                        {renderachievements()}
                     </Col>
                 </Row>
 

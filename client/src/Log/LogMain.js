@@ -34,10 +34,10 @@ export default function Goalscard() {
             <Card bg = 'secondary' text = 'light' style = {{maxWidth: "400px"}}>
                 <Card.Body>
                     <Card.Title>
-                        You have anything to tell me?
+                        Record your savings and spendings of the day!
                     </Card.Title>
                     <Card.Text>
-                        tell me how much you spent today
+                        How much did you spend?
                     </Card.Text>
                     <Form>
                         <Form.Group>
@@ -46,7 +46,7 @@ export default function Goalscard() {
                                 }}></Form.Control>
                         </Form.Group>
                         <Form.Group>
-                            <Form.Label>As well, tell me how much you saved!</Form.Label>
+                            <Form.Label>How much did you save?</Form.Label>
                             <Form.Control type ="number" id ="amount spent" min ='0' step=".01" onChange={(e)=> {
                                     setamountsaved(e.target.value)
                                 }}></Form.Control>
