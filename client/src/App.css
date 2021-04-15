@@ -1,9 +1,31 @@
 .App {
   text-align: center;
-
-  
   
 }
+
+/*<h1 style = {{textAlign: 'center', paddingTop: '15px', paddingBottom: '50px',fontWeight: 'bold'}} >Welcome Back {getun()}! </h1>*/
+
+.header{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-weight: 'bold';
+  color: white;
+  font-size: 45px;
+}
+
+.container {
+  position: relative;
+  margin-bottom: 30px;
+  width: 100%;
+}
+
+.banner {
+  position: relative;
+  margin-bottom: 50px;
+}
+
 
 body{
 

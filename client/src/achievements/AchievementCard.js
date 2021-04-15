@@ -2,8 +2,8 @@ import Axios from 'axios'
 import React, {useState, useEffect} from 'react'
 import {Form, Button, Card, Container, ProgressBar} from 'react-bootstrap'
 import {Link, Redirect, useHistory} from 'react-router-dom'
-import logchecker from '../history/logchecker'
 import Logchecker from '../history/logchecker'
+import NoAchievement from './NoAchievement'
 
 export default function AchievementCard() {
 
@@ -11,11 +11,10 @@ export default function AchievementCard() {
     const [total, settotall] = useState([]);
     const [today, settoday] = useState([]);
     const [usergoal, setusergoal] = useState([]);
+    const [userhistory, getuserhistory] = useState([]);
 
     useEffect(()=>{
         var d = new Date();
-
-        var month = ('0'+(d.getMonth()+1)).slice(-2);
 
         Axios.all([
 
@@ -31,21 +30,25 @@ export default function AchievementCard() {
 
             Axios.post('http://localhost:3001/api/getgoals',{
                 id: localStorage.getItem('currentID'),
+            }),
+
+            Axios.post('http://localhost:3001/api/gethistorymain',{
+                userid: localStorage.getItem('currentID'),
             })
 
-        ]).then(Axios.spread((response1, response2, response3)=>{
+        ]).then(Axios.spread((response1, response2, response3, response4)=>{
             settotall(response1.data);
             settoday(response2.data);
             setusergoal(response3.data);
+            getuserhistory(response4.data);
             setLoading(false);
         }));
-
-    
         
-
+        
+        
     }, []);
 
-    console.log(today);
+    console.log(userhistory);
 
     const getmonthspent = () =>{
 
@@ -84,23 +87,23 @@ export default function AchievementCard() {
             return percentage
         }
     
-        const getdailysavethirty = () => {
+    const getdailysavethirty = () => {
 
-            var percentage = (total[0][0]["SUM(DailySave)"]/ 5000)*100;
+        var percentage = (total[0][0]["SUM(DailySave)"]/ 5000)*100;
         
-                return percentage
-            }
+            return percentage
+        }
             
-       
-       
+        
+        
         if(isLoading){
             return(
                 <div>Loading</div>
             )
         }
-        else if (today[0].length == 0){
+        else if (userhistory[0].length == 0){
             return(
-                <Logchecker/>
+                <NoAchievement/>
             )
             
         }

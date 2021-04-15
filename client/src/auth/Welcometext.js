@@ -7,14 +7,14 @@ export default function Welcometext() {
           Welcome!
         </h1>
         <h3 style ={{paddingBottom: "15px"}}>
-          Plan your money..
+          Plan your savings.
         </h3>
         <h3 style ={{paddingBottom: "15px"}}>
-          Change your life..
+          Track your expenses.
         </h3>
 
         <h3>
-          Have fun
+          Stress free!
         </h3>
       </div>
     )
