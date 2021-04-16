@@ -76,12 +76,7 @@ export default function Goalscard() {
             <div>Loading</div>
         )
     }
-    else if (today[0].length == 0){
-        return(
-            <Logchecker/>
-        )
-        
-    }
+   
 
 
 

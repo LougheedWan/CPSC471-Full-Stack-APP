@@ -30,7 +30,7 @@ export default function NavBar() {
             </Nav>
 
             <Form inline>
-                <Nav.Link href = "settings" style = {{color:"white"}}>Settings</Nav.Link>
+
 
                 <Button variant = "outline-info" onClick = {() => {
                     logoutUser();
